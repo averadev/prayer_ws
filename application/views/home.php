@@ -255,17 +255,20 @@
             </div>
         </div>
         <div class="row">
+        <table>
             <tbody id="tableBatchsBody">
                                 <?php
                                 if (isset($users)) {
                                     foreach($users as $item){?>
                                     <tr>
                                     <td><?php echo $item->ID; ?></td>
+                                     <td><?php echo $item->create_date; ?></td>
                                     <?php
                                 }
                                 
                                 }?>
                             </tbody>
+        </table>
         </div>
         </div>
         <!-- /page content -->

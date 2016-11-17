@@ -7,7 +7,7 @@ Class user_model extends CI_MODEL{
 
 
     function getUsers(){
-        $this->db->select("ID");
+        $this->db->select("ID, create_date");
         $this->db->from("user");
         $query = $this->db->get();
         if($query->num_rows() > 0 ){
