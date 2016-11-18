@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-Class user_model extends CI_MODEL{
+Class days_model extends CI_MODEL{
  
     public function __construct(){
         parent::__construct();
     }
 
 
-    function getUsers(){
-        $this->db->select("id_user, create_date");
-        $this->db->from("users");
+    function getDays(){
+        $this->db->select("id_day, day_name,day_date, day_shortdesc, day_status");
+        $this->db->from("days");
         $query = $this->db->get();
         if($query->num_rows() > 0 ){
             return $query->result();

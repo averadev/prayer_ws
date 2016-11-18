@@ -14,12 +14,13 @@
     <!-- Font Awesome -->
    <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>font-awesome/css/font-awesome.min.css" />
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>nprogress/nprogress.css" />
     <!-- Animate.css -->
     <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>animate/animate.css" />
 
     <!-- Custom Theme Style -->
     <link rel="stylesheet" href="<?php echo base_url().CSS; ?>custom.css" />
+    
   </head>
 
 <body class="nav-md">
@@ -33,19 +34,6 @@
             </div>
 
             <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile">
-              <div class="profile_pic">
-                <img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
             <br />
 
             <!-- sidebar menu -->
@@ -95,7 +83,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -107,7 +95,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -119,7 +107,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -131,7 +119,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -143,7 +131,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -155,7 +143,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -185,90 +173,54 @@
           <div class="">
             <div class="clearfix"></div>
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+            </div>
+          </div>
+        <div class="row">
+         <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Crear Oracion <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, minima.</small></h2>
+                    <h2>Days</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li>
-                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+
                   <div class="x_content">
-                    <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action" id="app">
+                        <thead>
+                          <tr class="headings">
+                            <th v-for="header in headers">
+                                {{ header.text }}
+                            </th>
+                          </tr>
+                        </thead>
 
-                    </form>
+                        <tbody>
+                        <?php
+                            if (isset($days)) {
+                                foreach($days as $item){?>
+                                <tr>
+                                    <td><?php echo $item->id_day; ?></td>
+                                    <td><?php echo $item->day_name; ?></td>
+                                    <td><?php echo $item->day_date; ?></td>
+                                    <td><?php echo $item->day_shortdesc; ?></td>
+                                    <td><?php if($item->day_status){echo "active";} ?></td>
+                                <?php
+                                } 
+                        }?>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-        </div>
-        <div class="row">
-        <table>
-            <tbody id="tableBatchsBody">
-                                <?php
-                                if (isset($users)) {
-                                    foreach($users as $item){?>
-                                    <tr>
-                                    <td><?php echo $item->ID; ?></td>
-                                     <td><?php echo $item->create_date; ?></td>
-                                    <?php
-                                }
-                                
-                                }?>
-                            </tbody>
-        </table>
         </div>
         </div>
         <!-- /page content -->
@@ -283,8 +235,27 @@
         <!-- /footer content -->
       </div>
     </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url().JS; ?>bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo base_url().JS; ?>bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo base_url().LBRY; ?>nprogress/nprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script>
+    new Vue({ 
+        el: '#app',
+        data:{
+            headers: [
+                { text: 'ID_DAY' },
+                { text: 'Name' },
+                { text: 'Date' },
+                { text: 'Description' },
+                { text: 'Status' }
+            ]
+        }
+    })
+</script>
 </body>
 </html>

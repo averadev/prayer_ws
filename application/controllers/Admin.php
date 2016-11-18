@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->database('default');
-		$this->load->model('user_model');
+		$this->load->model('days_model');
 	}
 	/**
 	 * Index Page for this controller.
@@ -25,7 +25,7 @@ class Admin extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		$data['users'] = $this->user_model->getUsers();
+		$data['days'] = $this->days_model->getDays();
 		$this->load->view('home', $data);
 	}
 }
