@@ -248,11 +248,11 @@
         el: '#app',
         data:{
             headers: [
-                { text: 'ID_DAY' },
-                { text: 'Name' },
-                { text: 'Date' },
-                { text: 'Description' },
-                { text: 'Status' }
+                { text: 'ID_DIA' },
+                { text: 'Nombre' },
+                { text: 'Fecha' },
+                { text: 'Descripcion' },
+                { text: 'Estatus' }
             ]
         }
     })
