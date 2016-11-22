@@ -201,20 +201,13 @@
                         </thead>
 
                         <tbody>
-                        <?php
-                            if (isset($days)) {
-                                foreach($days as $item){?>
-                                <tr>
-                                    <td><?php echo $item->id_day; ?></td>
-                                    <td><?php echo $item->day_name; ?></td>
-                                    <td><?php echo $item->day_date; ?></td>
-                                    <td><?php echo $item->day_shortdesc; ?></td>
-                                    <td><?php if($item->day_status){echo "active";} ?></td>
-                                <?php
-                                } 
-                        }?>
-                            </td>
-                          </tr>
+                        <tr v-for="day in days">
+                                <td> {{ day.id_day }} </td>
+                                <td> {{ day.day_name }} </td>
+                                <td> {{ day.day_date }} </td>
+                                <td> {{ day.day_shortdesc }} </td>
+                                <td> {{ day.day_status }} </td>
+                        </tr>
                         </tbody>
                       </table>
                     </div>
@@ -244,7 +237,7 @@
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script>
-    new Vue({ 
+    var vm = new Vue({ 
         el: '#app',
         data:{
             headers: [
@@ -253,9 +246,19 @@
                 { text: 'Fecha' },
                 { text: 'Descripcion' },
                 { text: 'Estatus' }
-            ]
-        }
+            ],
+            days:[]
+        },
+        ready : function(){
+          getDays();
+      }
     })
+
+    function getDays(){
+       $.get('RestPrayer/days/', function(data){
+           vm.days = data.items;
+        })
+    }
 </script>
 </body>
 </html>

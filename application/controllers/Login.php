@@ -5,13 +5,32 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->library('nativesessions');
 		$this->load->helper('url');
 		$this->load->database('default');
-		$this->load->model('user_model');
+		$this->load->model('Admins_model');
 	}
 
 	public function index(){
-		$data['users'] = $this->user_model->getUsers();
-		$this->load->view('login', $data);
+		$this->load->view('login');
+	}
+
+	public function checkLogin(){
+		if($this->input->is_ajax_request()){
+			$user = $_POST['username'];
+			$pass = md5($_POST['password']);
+			$Valido = $this->Admins_model->getUser($user, $pass);
+			if ($Valido) {
+				//$this->NativeSessions->set("usuario", $user);
+				echo json_encode(["success" => true]);
+			}else{
+				echo json_encode(["success" => false]);
+			}
+		}
+	}
+
+	public function logout(){
+		$this->NativeSessions->deleteAll();
+		header('Location: ../login');
 	}
 }
