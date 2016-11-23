@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Inicio</title>
+    <title>Add Days</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -97,52 +97,74 @@
         </div>
         <!-- /top navigation -->
         <!-- page content -->
-  <div class="right_col" role="main">
+        <div class="right_col" role="main">
           <div class="">
             <div class="clearfix"></div>
             <div class="row">
             </div>
           </div>
-        <div class="row">
-         <div class="clearfix"></div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Days</h2>
+                    <h2>Agregar Dias</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      </li>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-
                   <div class="x_content">
+                    <br />
+                    <form id="addDays" name="formAddDays" data-parsley-validate class="form-horizontal form-label-left" action="" method="POST" enctype="multipart/form-data">
 
-                    <div class="table-responsive">
-                      <table class="table table-striped jambo_table bulk_action" id="app">
-                        <thead>
-                          <tr class="headings">
-                            <th v-for="header in headers">
-                                {{ header.text }}
-                            </th>
-                          </tr>
-                        </thead>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="nombreDia" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="date" id="fechaDia" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion Corta</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="descripcionCorta" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion Larga</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea id="descripcionLarga"  class="form-control col-md-7 col-xs-12" type="text"></textarea> 
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="file" class="date-picker form-control col-md-7 col-xs-12" required="required" type="file">
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button id="submitAudio" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
 
-                        <tbody>
-                        <tr v-for="day in days">
-                                <td> {{ day.id_day }} </td>
-                                <td> {{ day.day_name }} </td>
-                                <td> {{ day.day_date }} </td>
-                                <td> {{ day.day_shortdesc }} </td>
-                                <td> {{ day.day_status }} </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
-        </div>
+            </div>
         </div>
         <!-- /page content -->
 
@@ -163,30 +185,10 @@
 <script type="text/javascript" src="<?php echo base_url().JS; ?>bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url().LBRY; ?>nprogress/nprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
+<script type="text/javascript" src="<?php echo base_url().JS; ?>addDays.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script>
-    var vm = new Vue({ 
-        el: '#app',
-        data:{
-            headers: [
-                { text: 'ID_DIA' },
-                { text: 'Nombre' },
-                { text: 'Fecha' },
-                { text: 'Descripcion' },
-                { text: 'Estatus' }
-            ],
-            days:[]
-        },
-        ready : function(){
-          getDays();
-      }
-    })
 
-    function getDays(){
-       $.get('RestPrayer/days/', function(data){
-           vm.days = data.items;
-        })
-    }
 </script>
 </body>
 </html>
