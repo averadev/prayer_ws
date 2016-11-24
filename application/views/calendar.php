@@ -77,7 +77,9 @@ $(document).ready(function() {
             }
             $('#calendar').fullCalendar({
                 editable: true,
-                events: fechas
+                events: fechas,
+                eventColor: '#378006',
+                displayEventTime: false
             })
         })
     }
