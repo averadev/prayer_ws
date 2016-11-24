@@ -1,100 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Inicio</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Font Awesome -->
-   <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>font-awesome/css/font-awesome.min.css" />
-    <!-- NProgress -->
-    <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>nprogress/nprogress.css" />
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="<?php echo base_url().LBRY; ?>animate/animate.css" />
-
-    <!-- Custom Theme Style -->
-    <link rel="stylesheet" href="<?php echo base_url().CSS; ?>custom.css" />
-    
-  </head>
-
-<body class="nav-md">
- <div class="container body">
-      <div class="main_container">
-      
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-handshake-o"></i> <span>Admin</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Admin <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="Admin">Inicio</a></li>
-                      <li><a href="AddDays">Agregar Dias</a></li>
-                      <li><a href="">Configuración</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="http://xacatolicos.com/app/images/avatar/icon-user.png" alt=""><?= $user; ?>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="login"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+<?php
+  $this->load->view('header');
+?>
+<?php
+  $this->load->view('menus');
+?>
         <!-- /top navigation -->
         <!-- page content -->
   <div class="right_col" role="main">
@@ -132,9 +41,9 @@
                         <tr v-for="day in days">
                                 <td> {{ day.id_day }} </td>
                                 <td> {{ day.day_name }} </td>
-                                <td> {{ day.day_date }} </td>
+                                <td> {{ day.day_date | date }} </td>
                                 <td> {{ day.day_shortdesc }} </td>
-                                <td> {{ day.day_status }} </td>
+                                <td> {{ day.audio }} </td>
                         </tr>
                         </tbody>
                       </table>
@@ -164,6 +73,7 @@
 <script type="text/javascript" src="<?php echo base_url().LBRY; ?>nprogress/nprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+
 <script>
     var vm = new Vue({ 
         el: '#app',
@@ -173,7 +83,7 @@
                 { text: 'Nombre' },
                 { text: 'Fecha' },
                 { text: 'Descripcion' },
-                { text: 'Estatus' }
+                { text: 'Audio' }
             ],
             days:[]
         },

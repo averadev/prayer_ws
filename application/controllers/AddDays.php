@@ -8,20 +8,34 @@ class AddDays extends CI_Controller {
 		$this->load->library('nativesessions');
 		$this->load->helper('url');
 		$this->load->database('default');
-		//$this->load->model('days_model');
+		$this->load->model('days_model');
 		
 		if(!$this->nativesessions->get('usuario')){
 			redirect('login');
 		}
 	}
 	public function index(){
-		//$DAY = $this->input->get('day');
 		$data['user'] = $this->nativesessions->get('usuario');
 		$this->load->view('AddDays', $data);
 	}
+
 	public function saveAudios(){
 		$ruta = "assets/audios/";
-		$this->uploadFile($_FILES, $ruta);
+		$archivo = $this->uploadFile($_FILES, $ruta);
+		if ($archivo) {
+			$FILE = [
+				"day_date" => $_POST['fechaDia'],
+				"day_type" => 1,
+				"day_name" => $_POST['nombreDia'],
+				"day_shortdesc" => $_POST['descripcionCorta'],
+				"day_longdesc"	=> $_POST['descripcionLarga'],
+				"day_status" => 1,
+				"audio" => $archivo
+			];
+			$this->days_model->insertReturnId("days", $FILE);
+			echo json_encode(["success" => 1, "message" => "Guardado correctamente"]);
+		}
+		
 	}
 
 	private function uploadFile($files, $route){
@@ -35,7 +49,7 @@ class AddDays extends CI_Controller {
 				
 				$fecha = new DateTime();
 				
-				$nombreTimeStamp = "audio_". $fecha->getTimestamp();
+				$nombreTimeStamp = $name."_". $fecha->getTimestamp();
 				
 				$extension=explode(".",$name); 
 				$extension=$extension[count($extension)-1]; 

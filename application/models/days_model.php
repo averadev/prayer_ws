@@ -7,7 +7,7 @@ Class days_model extends CI_MODEL{
 
 
     function getDays($day){
-        $this->db->select("id_day, day_name,day_date, day_shortdesc, day_status");
+        $this->db->select("id_day, day_name, day_date, day_shortdesc, audio");
         $this->db->from("days");
         if ($day) {
              $this->db->where('id_day', $day);
@@ -17,4 +17,15 @@ Class days_model extends CI_MODEL{
             return $query->result();
         }
     }
+
+    public function insertReturnId($table, $data){
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+    public function updateReturnId($table, $data, $condicion){
+        $this->db->where($condicion);
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
+
  }
