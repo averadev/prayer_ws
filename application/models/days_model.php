@@ -27,5 +27,15 @@ Class days_model extends CI_MODEL{
         $this->db->update($table, $data);
         return $this->db->affected_rows();
     }
-
+    function getDayByDate($date){
+        $this->db->select("id_day, day_name, day_date, day_shortdesc,day_longdesc, audio");
+        $this->db->from("days");
+        if ($date) {
+             $this->db->where('day_date', $date);
+        }
+        $query = $this->db->get();
+        if($query->num_rows() > 0 ){
+            return $query->result();
+        }
+    }
  }

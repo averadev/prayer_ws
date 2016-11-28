@@ -23,6 +23,6 @@
     <script type="text/javascript" src="<?php echo base_url().LBRY; ?>alertify/alertify.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url().LBRY; ?>moment/moment.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.print.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   </head>

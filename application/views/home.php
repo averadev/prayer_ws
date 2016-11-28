@@ -43,7 +43,12 @@
                                 <td> {{ day.day_name }} </td>
                                 <td> {{ day.day_date | date }} </td>
                                 <td> {{ day.day_shortdesc }} </td>
-                                <td> {{ day.audio }} </td>
+                                <td>
+                                  <audio controls>
+                                    <source src="{{ BASE_URL + day.audio }}"  type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                </audio>
+                                </td>
                         </tr>
                         </tbody>
                       </table>
@@ -75,6 +80,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 
 <script>
+  var BASE_URL_AUDIO = '<?php echo base_url().AU ?>';
     var vm = new Vue({ 
         el: '#app',
         data:{
@@ -85,7 +91,8 @@
                 { text: 'Descripcion' },
                 { text: 'Audio' }
             ],
-            days:[]
+            days:[],
+            BASE_URL : BASE_URL_AUDIO,
         },
         ready : function(){
           getDays();

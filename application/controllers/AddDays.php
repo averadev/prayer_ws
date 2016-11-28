@@ -48,10 +48,9 @@ class AddDays extends CI_Controller {
 				$tipo = $key['type']; //obtenemos el tipo de imagen
 				
 				$fecha = new DateTime();
-				
-				$nombreTimeStamp = $name."_". $fecha->getTimestamp();
-				
+
 				$extension=explode(".",$name); 
+				$nombreTimeStamp = $extension[0]."_". $fecha->getTimestamp();
 				$extension=$extension[count($extension)-1]; 
         		$nombreTimeStamp = $nombreTimeStamp . "." . $extension;
 				
@@ -67,4 +66,24 @@ class AddDays extends CI_Controller {
 		}
 		return false;
 	}
+
+	public function formulario(){
+		$fecha = $_POST['fecha'];
+		$day = $this->days_model->getDayByDate($fecha);
+		if ($day) {
+			$datos['day_name'] = $day[0]->day_name;
+			$datos['day_date'] = $day[0]->day_date;
+			$datos['day_shortdesc'] = $day[0]->day_shortdesc;
+			$datos['day_longdesc'] = $day[0]->day_longdesc;
+			$datos['day_audio'] = $day[0]->audio;
+		}else{
+			$datos['day_name'] = '';
+			$datos['day_date'] = $fecha;
+			$datos['day_shortdesc'] = '';
+			$datos['day_longdesc'] = '';
+			$datos['day_audio'] = '';
+		}
+		$this->load->view('formulario', $datos);
+	}
+
 }

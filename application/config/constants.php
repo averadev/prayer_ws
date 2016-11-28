@@ -88,3 +88,4 @@ define('IMG', 'assets/img/');
 define('CSS', 'assets/css/');
 define('JS', 'assets/js/');
 define('LBRY', 'assets/libraries/');
+define('AU', 'assets/audios/');
