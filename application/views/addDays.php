@@ -59,7 +59,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="file" class="date-picker form-control col-md-7 col-xs-12" required="required" type="file">
+                          <input id="file" class="date-picker form-control col-md-7 col-xs-12" required="required" type="file" accept="audio/*">
                         </div>
                       </div>
                       <div class="ln_solid"></div>

@@ -21,8 +21,8 @@ class AddDays extends CI_Controller {
 
 	public function saveAudios(){
 		$ruta = "assets/audios/";
-		$archivo = $this->uploadFile($_FILES, $ruta);
-		if ($archivo) {
+		if ($_FILES) {
+			$archivo = $this->uploadFile($_FILES, $ruta);
 			$FILE = [
 				"day_date" => $_POST['fechaDia'],
 				"day_type" => 1,
@@ -32,8 +32,34 @@ class AddDays extends CI_Controller {
 				"day_status" => 1,
 				"audio" => $archivo
 			];
-			$this->days_model->insertReturnId("days", $FILE);
-			echo json_encode(["success" => 1, "message" => "Guardado correctamente"]);
+		}else{
+			$archivo = true;
+			$FILE = [
+				"day_date" => $_POST['fechaDia'],
+				"day_name" => $_POST['nombreDia'],
+				"day_shortdesc" => $_POST['descripcionCorta'],
+				"day_longdesc"	=> $_POST['descripcionLarga']
+			];
+		}
+		
+		if ($archivo) {
+			
+			if ($_POST['ID_DAY']) {
+				$condicion = "id_day = " . $_POST['ID_DAY'];
+				$rows = $this->days_model->updateReturnId("days", $FILE, $condicion);
+				if ($rows) {
+					$message = ["success" => 1, "message" => "Actulizado correctamente"];
+				}else{
+					$message = ["success" => 0, "message" => "Error al actualizar"];
+				}
+				
+			}else{
+				$this->days_model->insertReturnId("days", $FILE);
+				$message = ["success" => 1, "message" => "Guardado correctamente"];
+			}
+			echo json_encode($message);
+		}else{
+			echo json_encode(["success" => 0, "message" => "Vuelve a intentarlo"]);
 		}
 		
 	}
@@ -71,6 +97,7 @@ class AddDays extends CI_Controller {
 		$fecha = $_POST['fecha'];
 		$day = $this->days_model->getDayByDate($fecha);
 		if ($day) {
+			$datos['id_day'] = $day[0]->id_day;
 			$datos['day_name'] = $day[0]->day_name;
 			$datos['day_date'] = $day[0]->day_date;
 			$datos['day_shortdesc'] = $day[0]->day_shortdesc;
@@ -82,6 +109,7 @@ class AddDays extends CI_Controller {
 			$datos['day_shortdesc'] = '';
 			$datos['day_longdesc'] = '';
 			$datos['day_audio'] = '';
+			$datos['id_day'] = '';
 		}
 		$this->load->view('formulario', $datos);
 	}

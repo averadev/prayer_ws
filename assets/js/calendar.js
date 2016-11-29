@@ -58,7 +58,11 @@ function newBacth(fecha){
                 text: "Save",
                 "class": 'dialogModalButtonAccept',
                 click: function() {
-                   submitFileOK();
+                    if (verifyFields()) {
+                        submitFileOK();
+                    }else{
+                        alertify.error("Verifica los campos");
+                    }
                 }
             }]
         };
@@ -120,30 +124,64 @@ function submitFileOK(){
         var Req = new XMLHttpRequest(); 
     }else if(window.ActiveXObject) { 
         var Req = new ActiveXObject("Microsoft.XMLHTTP"); 
-    }   
-    
+    } 
     var data = new FormData(); 
     
-    data.append('nombreDia', $('#nombreDia').val().trim());
-    data.append('fechaDia', $('#fechaDia').val());
-    data.append('descripcionCorta', $('#descripcionCorta').val());
-    data.append('descripcionLarga', $('#descripcionLarga').val());
-    data.append('fechaDia', $('#fechaDia').val());
+    var datos = getFields();
+    data.append('ID_DAY', $("#IDDAY").val());
+    data.append('nombreDia', datos.nombre);
+    data.append('fechaDia', datos.fechaDia);
+    data.append('descripcionCorta', datos.desshort);
+    data.append('descripcionLarga', datos.deslong);
     
-    var archivos = document.getElementById("file");
-    var archivo = archivos.files; 
-    data.append('Audio', archivo[0]);
-
+    if ($("#audio").length && datos.file < 0) {
+         data.append('Audio', false);
+    }else{
+        var archivos = document.getElementById("file");
+        var archivo = archivos.files; 
+        data.append('Audio', archivo[0]);
+    }
+    
     Req.open("POST", "addDays/saveAudios", true);
     Req.onload = function(Event) {
         if (Req.status == 200) {
             modalCreditLimit.dialog( "close" );
             $("#calendar").fullCalendar('destroy');
             getDays();
-            alertify.success("Guardado correctamente");
+            var respuesta = JSON.parse(this.responseText);
+            if (respuesta.success) {
+                alertify.success(respuesta.message);
+            }else{
+                alertify.error(respuesta.message);
+            }
         } else { 
           
         }   
     };
     Req.send(data); 
+}
+
+function verifyFields(){
+    var data = getFields();
+    var T = false;
+    if (data.nombre && data.fechaDia && data.desshort  && data.deslong && (data.file > 0) || $("#audio").length) {
+        T = true;
+    }
+    return T;
+}
+
+function getFields(){
+    var nombre = $('#nombreDia').val().trim();
+    var fechaDia = $('#fechaDia').val();
+    var desshort = $('#descripcionCorta').val().trim();
+    var deslong = $('#descripcionLarga').val().trim();
+    var file = $('#file').get(0).files.length;
+    data = {
+        nombre: nombre,
+        fechaDia: fechaDia,
+        desshort: desshort,
+        deslong: deslong,
+        file: file
+    }
+    return  data;
 }
