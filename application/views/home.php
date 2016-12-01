@@ -24,7 +24,18 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                          Desactivar oraciones despues de: 
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <select class="form-control" id="days_cancel">
+                            <option value="7">7 días</option>
+                            <option value="15">15 días</option>
+                            <option value="30">30 días</option>
+                          </select>
+                        </div>
+                      </div>
                   <div class="x_content">
 
                     <div class="table-responsive">
@@ -78,32 +89,10 @@
 <script type="text/javascript" src="<?php echo base_url().LBRY; ?>nprogress/nprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-
 <script>
   var BASE_URL_AUDIO = '<?php echo base_url().AU ?>';
-    var vm = new Vue({ 
-        el: '#app',
-        data:{
-            headers: [
-                { text: 'ID_DIA' },
-                { text: 'Nombre' },
-                { text: 'Fecha' },
-                { text: 'Descripcion' },
-                { text: 'Audio' }
-            ],
-            days:[],
-            BASE_URL : BASE_URL_AUDIO,
-        },
-        ready : function(){
-          getDays();
-      }
-    })
-
-    function getDays(){
-       $.get('RestPrayer/days/', function(data){
-           vm.days = data.items;
-        })
-    }
 </script>
+<script type="text/javascript" src="<?php echo base_url().JS; ?>home.js"></script>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 $("#addDays").submit(function(e){
     e.preventDefault();
     submitFileOK();
-  });
+});
 
 function submitFileOK(){
 

@@ -277,3 +277,24 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+
+
+function ajaxDATAG(datos, div){
+    $.ajax({
+        data:datos.datos,
+        type: datos.metodo,
+        url: datos.url,
+        dataType: datos.tipo,
+        success: function(data){
+            datos.funcionExito(data, div);
+        },
+        error: function(){
+            datos.funcionError();
+        }
+    });
+}
+
+
+function mensajeAlertify(){
+     alertify.error("Ocurrio un error");
+}

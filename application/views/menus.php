@@ -17,9 +17,10 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="Admin">Inicio</a></li>
-                      <li><a href="AddDays">Agregar Dias</a></li>
+                      <li><a href="Admin">Lista</a></li>
+                    <!--   <li><a href="AddDays">Agregar Dias</a></li> -->
                       <li><a href="Calendar">Calendario</a></li>
+                     <!--  <li><a href="Config">Configuración</a></li> -->
                     </ul>
                   </li>
                 </ul>

@@ -94,7 +94,7 @@ function addHTMLGeneral(data, div){
     $("#"+div).html(data);
 }
 
-function ajaxDATAG(datos, div){
+/*function ajaxDATAG(datos, div){
     $.ajax({
         data:datos.datos,
         type: "POST",
@@ -108,14 +108,10 @@ function ajaxDATAG(datos, div){
         }
     });
 }
-
+*/
 
 function createNewBatch(){
     console.log("creado");
-}
-
-function mensajeAlertify(){
-    console.log("error");
 }
 
 function submitFileOK(){

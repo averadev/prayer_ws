@@ -30,14 +30,14 @@
                     <form id="addDays" name="formAddDays" data-parsley-validate class="form-horizontal form-label-left" action="" method="POST" enctype="multipart/form-data">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="nombreDia" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="date" id="fechaDia" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
@@ -56,7 +56,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Audio
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="file" class="date-picker form-control col-md-7 col-xs-12" required="required" type="file" accept="audio/*">
@@ -96,8 +96,5 @@
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>addDays.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-<script>
-
-</script>
 </body>
 </html>
