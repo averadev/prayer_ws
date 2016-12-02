@@ -19,6 +19,7 @@ class Admin extends CI_Controller {
 		//$data['days'] = $this->days_model->getDays($DAY);
 		//$this->load->view('home', $data);
 		$data['user'] = $this->nativesessions->get('usuario');
+		$data['days_cancel'] = $this->days_model->getDaysCancel();
 		$this->load->view('home', $data);
 	}
 }

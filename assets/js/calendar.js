@@ -6,13 +6,16 @@ $(document).ready(function() {
        $.get('RestPrayer/days/', function(data){  
             datos = data.items;
             var fechas = [];
-            for (var i = 0; i < datos.length; i++) {
+            if (datos) {
+                            for (var i = 0; i < datos.length; i++) {
                 evento = {
                     title: datos[i].day_name,
                     start: new Date(datos[i].day_date),
                 }
                 fechas.push(evento);
             }
+            }
+
             $('#calendar').fullCalendar({
                 header: {
                 left: 'prev,next today',
@@ -36,6 +39,7 @@ function newBacth(fecha){
     var ajaxData =  {
         url: "AddDays/formulario",
         tipo: "html",
+        metodo: "POST",
         datos: {
             fecha: fecha
         },

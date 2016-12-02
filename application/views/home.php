@@ -1,9 +1,11 @@
 <?php
   $this->load->view('header');
 ?>
+
 <?php
   $this->load->view('menus');
 ?>
+
         <!-- /top navigation -->
         <!-- page content -->
   <div class="right_col" role="main">
@@ -24,18 +26,6 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                          Desactivar oraciones despues de: 
-                        </label>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                          <select class="form-control" id="days_cancel">
-                            <option value="7">7 días</option>
-                            <option value="15">15 días</option>
-                            <option value="30">30 días</option>
-                          </select>
-                        </div>
-                      </div>
                   <div class="x_content">
 
                     <div class="table-responsive">
@@ -55,10 +45,15 @@
                                 <td> {{ day.day_date | date }} </td>
                                 <td> {{ day.day_shortdesc }} </td>
                                 <td>
+                                {{  BASE_URL_AUDIO + (day.audio) }}
                                   <audio controls>
-                                    <source src="{{ BASE_URL + day.audio }}"  type="audio/mpeg">
+                                    <source src=" {{  BASE_URL_AUDIO + (day.audio) }}"  type="audio/mp3">
                                   Your browser does not support the audio element.
                                 </audio>
+                                </td>
+                                <td>
+
+                                  <button onclick="deleteDay({{day.id_day}});" type="button" class="btn btn-danger" data-container="body" data-toggle="popover" data-placement="left" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td>
                         </tr>
                         </tbody>
@@ -81,18 +76,18 @@
         <!-- /footer content -->
       </div>
     </div>
-<script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+</body>
+<script>
+  var BASE_URL_AUDIO = '<?php echo base_url().AU ?>';
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url().LBRY; ?>nprogress/nprogress.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-<script>
-  var BASE_URL_AUDIO = '<?php echo base_url().AU ?>';
-</script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>home.js"></script>
+
 
 </body>
 </html>

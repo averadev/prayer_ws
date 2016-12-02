@@ -26,29 +26,16 @@
                   </div>
 
                   <div class="x_content">
-
-                    <div class="form-group">
-                        <label class="col-md-12 col-sm-12 col-xs-12 control-label">Desactivar Oraciones despues de 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                          Desactivar oraciones despues de: 
                         </label>
-
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                         <div class="radio">
-                            <label>
-                              <input type="radio" checked="" value="option1" id="dias_7" name="rangeDays">
-                              7 dias
-                            </label>
-                          </div>
-                          <div class="radio">
-                            <label>
-                              <input type="radio" checked="" value="option1" id="dias_15" name="rangeDays">
-                              15 dias
-                            </label>
-                          </div>
-                          <div class="radio">
-                            <label>
-                              <input type="radio" value="option2" id="dias_30" name="rangeDays">30 dias
-                            </label>
-                          </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <select class="form-control" id="days_cancel">
+                          <option <?php if($days_cancel == '7'){echo("selected");}?>>7 días</option>
+                          <option <?php if($days_cancel == '15'){echo("selected");}?>>15 días</option>
+                          <option <?php if($days_cancel == '30'){echo("selected");}?>>30 días</option>
+                          </select>
                         </div>
                       </div>
                   </div>
@@ -117,6 +104,6 @@
 <script>
     var modalCreditLimit = null;
 </script>
-<!-- <script type="text/javascript" src="<?php echo base_url().JS; ?>calendar.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url().JS; ?>config.js"></script>
 </body>
 </html>

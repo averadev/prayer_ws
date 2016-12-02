@@ -18,7 +18,8 @@ class RestPrayer extends REST_Controller {
 
 	public function days_get(){
 		$Dia = $this->get('day');
-		$days = $this->days_model->getDays($Dia);
+		$daysCancel = $this->days_model->getDaysCancel();
+		$days = $this->days_model->getDays($Dia, $daysCancel);
 		//$days = $this->days_model->getDaysProcedure($Dia);
 		$message = array('success' => true, 'items' => $days);
 		$this->response($message, 200);

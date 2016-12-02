@@ -17,7 +17,7 @@ function submitFileOK(){
     data.append('fechaDia', $('#fechaDia').val());
     data.append('descripcionCorta', $('#descripcionCorta').val());
     data.append('descripcionLarga', $('#descripcionLarga').val());
-    data.append('fechaDia', $('#fechaDia').val());
+    //data.append('fechaDia', $('#fechaDia').val());
     
     var archivos = document.getElementById("file");
     var archivo = archivos.files; 

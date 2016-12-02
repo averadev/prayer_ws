@@ -20,7 +20,7 @@
                       <li><a href="Admin">Lista</a></li>
                     <!--   <li><a href="AddDays">Agregar Dias</a></li> -->
                       <li><a href="Calendar">Calendario</a></li>
-                     <!--  <li><a href="Config">Configuración</a></li> -->
+                      <li><a href="Config">Configuración</a></li>
                     </ul>
                   </li>
                 </ul>

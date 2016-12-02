@@ -114,4 +114,40 @@ class AddDays extends CI_Controller {
 		$this->load->view('formulario', $datos);
 	}
 
+	public function saveDaysCancel(){
+		if($this->nativesessions->get('usuario')){
+			$condicion = "id = " . $_POST['id_dayCancel'];
+			$FILE = [
+				"numberDays" => $_POST['days_cancel'],
+			];
+			$rows = $this->days_model->updateReturnId("daysCancel", $FILE, $condicion);
+			if ($rows) {
+				$message = ["success" => 1, "message" => "Actulizado correctamente"];
+			}else{
+				$message = ["success" => 0, "message" => "Error al actualizar"];
+			}
+		}else{
+			echo json_encode(["success" => 0, "message" => "Vuelve a intentarlo"]);
+		}
+		echo json_encode($message);
+	}
+
+	public function deleteDay(){
+		if($this->nativesessions->get('usuario')){
+			$condicion = "id_day = " . $_POST['idDay'];
+			$FILE = [
+				"day_status" => 0,
+			];
+			$rows = $this->days_model->updateReturnId("days", $FILE, $condicion);
+			if ($rows) {
+				$message = ["success" => 1, "message" => "eliminado correctamente"];
+			}else{
+				$message = ["success" => 0, "message" => "Error al eliminar"];
+			}
+		}else{
+			echo json_encode(["success" => 0, "message" => "Vuelve a intentarlo"]);
+		}
+		echo json_encode($message);
+	}
+
 }

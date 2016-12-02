@@ -6,13 +6,14 @@ Class days_model extends CI_MODEL{
     }
 
 
-    function getDays($day){
+    function getDays($day, $numeroDias){
         $this->db->select("id_day, day_name, day_date, day_shortdesc, audio");
         $this->db->from("days");
         if ($day) {
              $this->db->where('id_day', $day);
         }
         $this->db->where('day_status', 1);
+        $this->db->where('day_date > date_sub(now(), INTERVAL '. $numeroDias .' DAY)');
         $this->db->order_by('day_date', 'ASC');
         $query = $this->db->get();
         if($query->num_rows() > 0 ){
@@ -45,5 +46,18 @@ Class days_model extends CI_MODEL{
     function getDaysProcedure($day){
         $query = $this->db->query("call all_days(1)");
         return $query->result();
+    }
+
+    function getDaysCancel(){
+        $this->db->select("numberDays");
+        $this->db->from("daysCancel");
+        $this->db->limit(1);
+       $query = $this->db->get();
+       if($query->num_rows() > 0 )
+       {
+                    //return $query->result();
+        $row = $query->row();
+        return $row->numberDays;
+    }
     }
  }
