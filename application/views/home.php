@@ -45,9 +45,9 @@
                                 <td> {{ day.day_date | date }} </td>
                                 <td> {{ day.day_shortdesc }} </td>
                                 <td>
-                                {{  BASE_URL_AUDIO + (day.audio) }}
+                             
                                   <audio controls>
-                                    <source src=" {{  BASE_URL_AUDIO + (day.audio) }}"  type="audio/mp3">
+                                    <source src=" {{  BASE_URL + (day.audio) }}"  type="audio/mp3">
                                   Your browser does not support the audio element.
                                 </audio>
                                 </td>
@@ -79,7 +79,6 @@
 </body>
 <script>
   var BASE_URL_AUDIO = '<?php echo base_url().AU ?>';
-
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url().JS; ?>bootstrap.js"></script>

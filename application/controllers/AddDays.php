@@ -65,7 +65,6 @@ class AddDays extends CI_Controller {
 	}
 
 	private function uploadFile($files, $route){
-		
 		foreach ($files as $key) {
     		if($key['error'] == UPLOAD_ERR_OK ){//Verificamos si se subio correctamente
       			$name = $key['name'];//Obtenemos el nombre del archivo
@@ -75,9 +74,9 @@ class AddDays extends CI_Controller {
 				
 				$fecha = new DateTime();
 
-				$extension=explode(".",$name); 
+				$extension = explode(".",$name); 
 				$nombreTimeStamp = $extension[0]."_". $fecha->getTimestamp();
-				$extension=$extension[count($extension)-1]; 
+				$extension = $extension[count($extension)-1]; 
         		$nombreTimeStamp = $nombreTimeStamp . "." . $extension;
 				
 				if(move_uploaded_file($temporal, $route . $nombreTimeStamp)){

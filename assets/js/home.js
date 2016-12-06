@@ -24,16 +24,13 @@ var vm = new Vue({
 })
 
 function getDays(){
-	/*$.get('RestPrayer/days/', function(data){
-		vm.days = data.items;
-	});*/
 	var ajaxData =  {
 		url: "RestPrayer/days/",
 		tipo: "json",
-		metodo: "POST",
+		metodo: "GET",
 		datos: {
 		},
-		funcionExito : deleteMessage,
+		funcionExito : daysMessage,
 		funcionError: mensajeAlertify
 	};
 	ajaxDATAG(ajaxData);
@@ -47,14 +44,27 @@ function deleteDay(id){
 		datos: {
 			idDay: id,
 		},
-		funcionExito : setVue,
+		funcionExito : deleteMessage,
 		funcionError: mensajeAlertify
 	};
 	ajaxDATAG(ajaxData);
 }
 
 function setVue(data){
-	vm.days = data.items;
+	if (data.success) {
+		alertify.success(data.message);
+	}else{
+		alertify.error(data.message);
+	}
+	//vm.days = data.items;
+}
+
+function daysMessage(data){
+	if (data.success) {
+		vm.days = data.items;
+	}else{
+		alertify.error(data.message);
+	}
 }
 
 function deleteMessage(data){
