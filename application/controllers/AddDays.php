@@ -66,14 +66,12 @@ class AddDays extends CI_Controller {
 
 	private function uploadFile($files, $route){
 		foreach ($files as $key) {
-    		if($key['error'] == UPLOAD_ERR_OK ){//Verificamos si se subio correctamente
-      			$name = $key['name'];//Obtenemos el nombre del archivo
-      			$temporal = $key['tmp_name']; //Obtenemos el nombre del archivo temporal
-      			$size= ($key['size'] / 1000)."Kb"; //Obtenemos el tamaño en KB
-				$tipo = $key['type']; //obtenemos el tipo de imagen
-				
+    		if($key['error'] == UPLOAD_ERR_OK ){
+      			$name = $key['name'];
+      			$temporal = $key['tmp_name']; 
+      			$size= ($key['size'] / 1000)."Kb"; 
+				$tipo = $key['type']; 
 				$fecha = new DateTime();
-
 				$extension = explode(".",$name); 
 				$nombreTimeStamp = $extension[0]."_". $fecha->getTimestamp();
 				$extension = $extension[count($extension)-1]; 

@@ -37,9 +37,10 @@ class Api extends REST_Controller {
      * Obtiene los audios disponibles
      */
 	public function getAudio_get($source){
-		$message = $this->verifyIsSet(array('idApp'));
+		$message = $this->verifyIsSet(array('id_device'));
 		if ($message == null) {
-			$data = $this->api_db->getAudio();
+			$ID = $this->get('id_device');
+			$data = $this->api_db->getAudio($ID);
 			
 			$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
 			$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
@@ -49,6 +50,11 @@ class Api extends REST_Controller {
 				$item->weekday = $day[date('w', ($timestamp))];
 				$item->month = $months[date('n', ($timestamp))];
 				$item->day = date('d', ($timestamp));
+				if ($item->fav) {
+					$item->fav = 1;
+				}else{
+					$item->fav = 0;
+				}
 			}
 			$message = array( 'success' => true, 'message' => "Audios", 'items' => $data );
         }
@@ -67,6 +73,43 @@ class Api extends REST_Controller {
 		    	return array('success' => false, 'message' => 'El parametro '.$value.' es obligatorio');
 		}
 		return null;
+    }
+    public function saveFav_get(){
+    	$message = $this->verifyIsSet(array('id_device'));
+		if ($message == null) {
+			$Day = [
+				"id_device" => $this->get('id_device'),
+				"id_day" => $this->get('id_day')
+			];
+			$id = $this->api_db->insertReturnId("favoritos", $Day);
+			if ($id) {
+
+				$data = $this->api_db->getAudio($this->get('id_device'));
+			
+				$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
+				$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+				
+				foreach( $data as $item ){
+					$timestamp = strtotime($item->day_date);
+					$item->weekday = $day[date('w', ($timestamp))];
+					$item->month = $months[date('n', ($timestamp))];
+					$item->day = date('d', ($timestamp));
+					if ($item->fav) {
+						$item->fav = 1;
+					}else{
+						$item->fav = 0;
+					}
+				}
+				$message = array( 'success' => true, 'message' => "Audios", 'items' => $data );
+			
+			}else{
+				$message = [
+					'success' => false,
+					'message' => "Ocurrio un error",
+				];
+			}
+		}
+		$this->response($message, 200);
     }
 	
 }

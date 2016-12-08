@@ -11,13 +11,24 @@ Class api_db extends CI_MODEL
 	/**
 	 * valida si existe el usuario
 	 */
-	public function getAudio(){
-		$this->db->select('d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio');
-		$this->db->from('days d');
-		$this->db->where('d.day_status = 1');
+	public function getAudio($id_device){
+		$this->db->select("d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio, f.ID as fav");
+		$this->db->from("days d");
+		$this->db->where("d.day_status = 1");
+		$this->db->join("favoritos f", "f.id_day = d.id_day and f.id_device = '". $id_device."'" , "left");
+		$this->db->order_by("d.day_date", "ASC");
         return $this->db->get()->result();
 	}
     
+    public function insertReturnId($table, $data){
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+    public function updateReturnId($table, $data, $condicion){
+        $this->db->where($condicion);
+        $this->db->update($table, $data);
+        return $this->db->affected_rows();
+    }
 	
 	
 }
