@@ -12,10 +12,11 @@ Class api_db extends CI_MODEL
 	 * valida si existe el usuario
 	 */
 	public function getAudio($id_device){
+		$this->db->distinct();
 		$this->db->select("d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio, f.ID as fav");
 		$this->db->from("days d");
-		$this->db->where("d.day_status = 1");
 		$this->db->join("favoritos f", "f.id_day = d.id_day and f.id_device = '". $id_device."'" , "left");
+		$this->db->where("d.day_status = 1");
 		$this->db->order_by("d.day_date", "ASC");
         return $this->db->get()->result();
 	}
@@ -29,10 +30,24 @@ Class api_db extends CI_MODEL
         $this->db->update($table, $data);
         return $this->db->affected_rows();
     }
-	
-	
+	public function deleteReturnId($table, $condicion){
+        //$this->db->where($condicion);
+        $this->db->delete($table, $condicion);
+        return $this->db->affected_rows();
+    }
+	public function countFav($table, $condicion){
+        $this->db->select('ID');
+        $this->db->from($table);
+        $this->db->where($condicion);
+        $query = $this->db->get();
+        if($query->num_rows() > 0 ){
+            return true;
+        }else{
+        	return false;
+        }
+    }
 }
-//end model
+
 
 
 

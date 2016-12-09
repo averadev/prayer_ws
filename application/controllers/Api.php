@@ -76,12 +76,57 @@ class Api extends REST_Controller {
     }
     public function saveFav_get(){
     	$message = $this->verifyIsSet(array('id_device'));
+		//
+
 		if ($message == null) {
 			$Day = [
 				"id_device" => $this->get('id_device'),
 				"id_day" => $this->get('id_day')
 			];
-			$id = $this->api_db->insertReturnId("favoritos", $Day);
+			$cuenta = $this->api_db->countFav('favoritos', $Day);
+			if (!$cuenta) {
+				$id = $this->api_db->insertReturnId("favoritos", $Day);
+			}else{
+				$id = true;
+			}
+			
+			if ($id) {
+
+				$data = $this->api_db->getAudio($this->get('id_device'));
+			
+				$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
+				$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+				
+				foreach( $data as $item ){
+					$timestamp = strtotime($item->day_date);
+					$item->weekday = $day[date('w', ($timestamp))];
+					$item->month = $months[date('n', ($timestamp))];
+					$item->day = date('d', ($timestamp));
+					if ($item->fav) {
+						$item->fav = 1;
+					}else{
+						$item->fav = 0;
+					}
+				}
+				$message = array( 'success' => true, 'message' => "Audios", 'items' => $data );
+			
+			}else{
+				$message = [
+					'success' => false,
+					'message' => "Ocurrio un error",
+				];
+			}
+		}
+		$this->response($message, 200);
+    }
+        public function deleteFav_get(){
+    	$message = $this->verifyIsSet(array('id_device'));
+		if ($message == null) {
+			$Day = [
+				"id_device" => $this->get('id_device'),
+				"id_day" => $this->get('id_day')
+			];
+			$id = $this->api_db->deleteReturnId("favoritos", $Day);
 			if ($id) {
 
 				$data = $this->api_db->getAudio($this->get('id_device'));
