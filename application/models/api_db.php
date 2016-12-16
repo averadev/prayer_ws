@@ -13,9 +13,10 @@ Class api_db extends CI_MODEL
 	 */
 	public function getAudio($id_device){
 		$this->db->distinct();
-		$this->db->select("d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio, f.ID as fav");
+		$this->db->select("d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio, f.ID as fav, dw.ID as downloaded");
 		$this->db->from("days d");
 		$this->db->join("favoritos f", "f.id_day = d.id_day and f.id_device = '". $id_device."'" , "left");
+        $this->db->join("downloads dw", "dw.id_day = dw.id_day and dw.id_device = '". $id_device."'" , "left");
 		$this->db->where("d.day_status = 1");
 		$this->db->order_by("d.day_date", "ASC");
         return $this->db->get()->result();
