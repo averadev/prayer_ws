@@ -47,6 +47,17 @@ Class api_db extends CI_MODEL
         	return false;
         }
     }
+    public function countDowloaded($table, $condicion){
+        $this->db->select('ID');
+        $this->db->from($table);
+        $this->db->where($condicion);
+        $query = $this->db->get();
+        if($query->num_rows() > 0 ){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 
