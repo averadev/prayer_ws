@@ -5,7 +5,6 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		//$this->load->library('nativesessions');
 		$this->load->helper('url');
 		$this->load->database('default');
 		$this->load->model('Admins_model');
@@ -21,7 +20,7 @@ class Login extends CI_Controller {
 			$pass = md5($_POST['password']);
 			$Valido = $this->Admins_model->getUser($user, $pass);
 			if ($Valido) {
-				//$this->nativesessions->set("usuario", $user);
+				$this->nativesessions->set("usuario", $user);
 				echo json_encode(["success" => true]);
 			}else{
 				echo json_encode(["success" => false]);
@@ -30,7 +29,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
-		//$this->nativesessions->deleteAll();
+		$this->nativesessions->deleteAll();
 		header('Location: ../login');
 	}
 }

@@ -5,7 +5,7 @@ class AddDays extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->library('nativesessions');
+		$this->load->library('Nativesessions');
 		$this->load->helper('url');
 		$this->load->database('default');
 		$this->load->model('days_model');
