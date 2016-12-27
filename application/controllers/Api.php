@@ -112,6 +112,11 @@ class Api extends REST_Controller {
 					}else{
 						$item->fav = 0;
 					}
+					if ($item->downloaded) {
+						$item->downloaded = 1;
+					}else{
+						$item->downloaded = 0;
+					}
 				}
 				$message = array( 'success' => true, 'message' => "Audios", 'items' => $data );
 
@@ -197,6 +202,11 @@ class Api extends REST_Controller {
 						$item->fav = 1;
 					}else{
 						$item->fav = 0;
+					}
+					if ($item->downloaded) {
+						$item->downloaded = 1;
+					}else{
+						$item->downloaded = 0;
 					}
 				}
 				$message = array( 'success' => true, 'message' => "Audios", 'items' => $data );
