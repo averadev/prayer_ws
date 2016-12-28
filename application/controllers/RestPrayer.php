@@ -11,16 +11,12 @@ class RestPrayer extends REST_Controller {
 		$this->load->model('days_model');
 	}
 	public function index_get(){
-		// $days = $this->days_model->getDays();
-		// $message = array('success' => true, 'items' => $days);
-		// $this->response($message, 200);
 	}
 
 	public function days_get(){
 		$Dia = $this->get('day');
 		$daysCancel = $this->days_model->getDaysCancel();
 		$days = $this->days_model->getDays($Dia, $daysCancel);
-		//$days = $this->days_model->getDaysProcedure($Dia);
 		$message = array('success' => true, 'items' => $days);
 		$this->response($message, 200);
 	}

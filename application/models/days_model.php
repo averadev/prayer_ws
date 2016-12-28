@@ -52,12 +52,12 @@ Class days_model extends CI_MODEL{
         $this->db->select("numberDays");
         $this->db->from("daysCancel");
         $this->db->limit(1);
-       $query = $this->db->get();
-       if($query->num_rows() > 0 )
-       {
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
                     //return $query->result();
-        $row = $query->row();
-        return $row->numberDays;
-    }
+            $row = $query->row();
+            return $row->numberDays;
+        }
     }
  }

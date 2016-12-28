@@ -11,13 +11,14 @@ Class api_db extends CI_MODEL
 	/**
 	 * valida si existe el usuario
 	 */
-	public function getAudio($id_device){
+	public function getAudio($id_device, $numeroDias){
 		$this->db->distinct();
 		$this->db->select("d.id_day, d.day_date, d.day_type, d.day_name, d.day_shortdesc, d.day_longdesc, d.day_status, d.audio, f.ID as fav, dw.ID as downloaded");
 		$this->db->from("days d");
 		$this->db->join("favoritos f", "f.id_day = d.id_day and f.id_device = '". $id_device."'" , "left");
         $this->db->join("downloads dw", "dw.id_day = d.id_day and dw.id_device = '". $id_device."'" , "left");
 		$this->db->where("d.day_status = 1");
+        $this->db->where('day_date > date_sub(now(), INTERVAL '. $numeroDias .' DAY)');
 		$this->db->order_by("d.day_date", "ASC");
         return $this->db->get()->result();
 	}
@@ -56,6 +57,18 @@ Class api_db extends CI_MODEL
             return true;
         }else{
             return false;
+        }
+    }
+    function getDaysCancel(){
+        $this->db->select("numberDays");
+        $this->db->from("daysCancel");
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if($query->num_rows() > 0 )
+        {
+                    //return $query->result();
+            $row = $query->row();
+            return $row->numberDays;
         }
     }
 }

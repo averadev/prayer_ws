@@ -39,8 +39,10 @@ class Api extends REST_Controller {
 	public function getAudio_get($source){
 		$message = $this->verifyIsSet(array('id_device'));
 		if ($message == null) {
+			
 			$ID = $this->get('id_device');
-			$data = $this->api_db->getAudio($ID);
+			$daysCancel = $this->api_db->getDaysCancel();
+			$data = $this->api_db->getAudio($ID, $daysCancel);
 			
 			$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
 			$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
@@ -81,7 +83,6 @@ class Api extends REST_Controller {
 	}
 	public function saveFav_get(){
 		$message = $this->verifyIsSet(array('id_device'));
-		//
 
 		if ($message == null) {
 			$Day = [
@@ -96,8 +97,10 @@ class Api extends REST_Controller {
 			}
 			
 			if ($id) {
-
-				$data = $this->api_db->getAudio($this->get('id_device'));
+				
+				$ID = $this->get('id_device');
+				$daysCancel = $this->api_db->getDaysCancel();
+				$data = $this->api_db->getAudio($ID, $daysCancel);
 
 				$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
 				$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
@@ -139,7 +142,9 @@ class Api extends REST_Controller {
 			$id = $this->api_db->deleteReturnId("favoritos", $Day);
 			if ($id) {
 
-				$data = $this->api_db->getAudio($this->get('id_device'));
+				$ID = $this->get('id_device');
+				$daysCancel = $this->api_db->getDaysCancel();
+				$data = $this->api_db->getAudio($ID, $daysCancel);
 
 				$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
 				$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
@@ -176,8 +181,8 @@ class Api extends REST_Controller {
 		$message = $this->verifyIsSet(array('id_device'));
 		if ($message == null) {
 			$Day = [
-				"id_device" => $this->get('id_device'),
-				"id_day" => $this->get('id_day')
+			"id_device" => $this->get('id_device'),
+			"id_day" => $this->get('id_day')
 			];
 			$cuenta = $this->api_db->countDowloaded('downloads', $Day);
 			if (!$cuenta) {
@@ -188,7 +193,9 @@ class Api extends REST_Controller {
 			
 			if ($id) {
 
-				$data = $this->api_db->getAudio($this->get('id_device'));
+				$ID = $this->get('id_device');
+				$daysCancel = $this->api_db->getDaysCancel();
+				$data = $this->api_db->getAudio($ID, $daysCancel);
 				
 				$day = array( "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" );
 				$months = array('', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
